@@ -9,17 +9,17 @@ const Book = ({ book }) => {
   const mountedRef = useRef(true);
   useEffect(() => {
     const image = new Image();
+    mountedRef.current = true
     image.src = book.url;
     image.onload = () => {
       setTimeout(() => {
-        if (mountedRef) {
+        if (mountedRef.current) {
           setImg(image);
         }
       }, 300);
     };
     return () => {
       mountedRef.current = false;
-    
     }
 
   });
